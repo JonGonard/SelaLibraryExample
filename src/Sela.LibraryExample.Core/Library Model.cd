@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Sela.LibraryExample.Core.Model.Book">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Book.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sela.LibraryExample.Core.Model.CatalogItem">
+    <Position X="6" Y="3.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgEAAAAAAYQIAFAAiAIAEBAAAAAAAAAUBCAAACAAAgA=</HashCode>
+      <FileName>Model\CatalogItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sela.LibraryExample.Core.Model.Copy">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAQAAYQAABAAAAAAAAAAAAAAAAAABAACEAIAAAA=</HashCode>
+      <FileName>Model\Copy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sela.LibraryExample.Core.Model.Jurnal">
+    <Position X="9.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Jurnal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sela.LibraryExample.Core.Library" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAACAAAAAABgAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Library.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Enum Name="Sela.LibraryExample.Core.Model.Genre">
+    <Position X="3" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAEAAACAEAEAAAA=</HashCode>
+      <FileName>Model\Genre.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
