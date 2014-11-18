@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Sela.LibraryExample.Core.Infrastructure;
+using System.Collections.Specialized;
 
 namespace Sela.LibraryExample.Core.Model
 {
-  public abstract class CatalogItem : NotifyObject, IEnumerable<Copy>
+  public abstract class CatalogItem : NotifyObject, IEnumerable<Copy>, INotifyCollectionChanged
   {
     private readonly ObservableDictionary<int, Copy> _copies;
     private int _isbn;
@@ -21,6 +22,8 @@ namespace Sela.LibraryExample.Core.Model
     {
       _copies = new ObservableDictionary<int, Copy>();          
       Topics = new ObservableCollection<string>();
+
+      _copies.CollectionChanged += (sender, args) => OnCollectionChanged(args);
     }
 
     protected CatalogItem(int isbn, string title) : this()
@@ -172,6 +175,16 @@ namespace Sela.LibraryExample.Core.Model
         return _copies[copyNumber].IsLent ? Result.Fail(Consts.COPY_LENT) : Result.Success();
 
       return Result.Fail(Consts.COPY_DOESNT_EXIST);
+    }
+
+    public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+    private void OnCollectionChanged(NotifyCollectionChangedEventArgs args)
+    {
+      var temp = CollectionChanged;
+
+      if (temp != null)
+        temp(this, args);
     }
   }
 }

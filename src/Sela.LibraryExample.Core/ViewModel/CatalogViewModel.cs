@@ -18,6 +18,7 @@ namespace Sela.LibraryExample.Core.ViewModel
     {
       _viewFactory = viewFactory;
       RemoveItemCommand = new RelayCommand(x => RemoveItem((CatalogItem)x));
+      AddNewItemCommand = new RelayCommand(x => AddNewItem());
     }
 
     public Library Library
@@ -26,6 +27,8 @@ namespace Sela.LibraryExample.Core.ViewModel
     }
 
     public RelayCommand RemoveItemCommand { get; private set; }
+
+    public RelayCommand AddNewItemCommand { get; private set; }
 
     private void RemoveItem(CatalogItem item)
     {

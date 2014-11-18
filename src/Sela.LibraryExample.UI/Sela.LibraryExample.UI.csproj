@@ -84,12 +84,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LibraryViewFactory.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewItemView.xaml.cs">
+      <DependentUpon>NewItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -138,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="sela icon 32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sela.LibraryExample.Core\Sela.LibraryExample.Core.csproj">
+      <Project>{8daafbb2-e06c-46c2-b3ae-346849ee7a21}</Project>
+      <Name>Sela.LibraryExample.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sela.LibraryExample.Core.Infrastructure;
+using System.Collections.Specialized;
 
 namespace Sela.LibraryExample.Core.Model
 {
-  public class Library : NotifyObject, IEnumerable<CatalogItem>
+  public class Library : NotifyObject, IEnumerable<CatalogItem>, INotifyCollectionChanged
   {
     private static Library _instance = new Library();
 
     private Library()
     {
       Catalog = new ObservableDictionary<int, CatalogItem>();
+
+      Catalog.CollectionChanged += (sender, args) => OnCollectionChanged(args);
     }
 
     private ObservableDictionary<int, CatalogItem> Catalog { get; set; }
@@ -68,6 +71,16 @@ namespace Sela.LibraryExample.Core.Model
     public Result RemoveItem(CatalogItem item)
     {
       return RemoveItem(item.ISBN);
+    }
+
+    public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+    private void OnCollectionChanged(NotifyCollectionChangedEventArgs args)
+    {
+      var temp = CollectionChanged;
+
+      if (temp != null)
+        temp(this, args);
     }
   }
 }
