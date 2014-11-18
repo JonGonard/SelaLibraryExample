@@ -32,11 +32,11 @@
       <FileName>Model\Jurnal.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Sela.LibraryExample.Core.Library" BaseTypeListCollapsed="true">
+  <Class Name="Sela.LibraryExample.Core.Model.Library" BaseTypeListCollapsed="true">
     <Position X="6.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAACAAAAAABgAAAAAAEAAAAAAAAAAA=</HashCode>
-      <FileName>Library.cs</FileName>
+      <HashCode>AAAEAAAAAAAAABAACAAAAAABgAAAAAAEQAAAAAAAAAA=</HashCode>
+      <FileName>Model\Library.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>

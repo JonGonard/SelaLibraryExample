@@ -21,6 +21,11 @@
     {
       return new Result(false, error);
     }
+
+    public static implicit operator bool(Result result)
+    {
+      return result.DidSucceed;
+    }
   }
 
   public class Result<T> : Result

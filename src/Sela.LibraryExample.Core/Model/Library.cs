@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sela.LibraryExample.Core.Infrastructure;
-using Sela.LibraryExample.Core.Model;
 
-namespace Sela.LibraryExample.Core
+namespace Sela.LibraryExample.Core.Model
 {
   public class Library : NotifyObject, IEnumerable<CatalogItem>
   {

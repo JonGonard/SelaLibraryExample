@@ -45,11 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\IconHelper.cs" />
+    <Compile Include="Infrastructure\IViewFactory.cs" />
     <Compile Include="Infrastructure\MessageBox.xaml.cs">
       <DependentUpon>MessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\RelayCommand.cs" />
-    <Compile Include="Library.cs" />
+    <Compile Include="Model\Library.cs" />
     <Compile Include="Infrastructure\Consts.cs" />
     <Compile Include="Infrastructure\NotifyObject.cs" />
     <Compile Include="Infrastructure\ObservableDictionary.cs" />
@@ -61,7 +62,12 @@
     <Compile Include="Model\Jurnal.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\AddNewItemViewModel.cs" />
+    <Compile Include="ViewModel\BookViewModel.cs" />
     <Compile Include="ViewModel\CatalogViewModel.cs" />
+    <Compile Include="ViewModel\ItemSpecificViewModel.cs" />
+    <Compile Include="ViewModel\ItemTypes.cs" />
+    <Compile Include="ViewModel\JurnalViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library Model.cd" />

@@ -17,8 +17,21 @@ namespace Sela.LibraryExample.Core.Model
     private DateTime _releaseDate;
     private int _issue;
 
+    private CatalogItem()
+    {
+      _copies = new ObservableDictionary<int, Copy>();          
+      Topics = new ObservableCollection<string>();
+    }
+
+    protected CatalogItem(int isbn, string title) : this()
+    {
+      _isbn = isbn;
+      _title = title;
+
+    }
+
     protected CatalogItem(string title, int isbn, Genre genre, int issue, DateTime releaseDate,
-      ObservableCollection<string> topics)
+      ObservableCollection<string> topics) : this()
     {
       Title = title;
       ISBN = isbn;
@@ -26,8 +39,6 @@ namespace Sela.LibraryExample.Core.Model
       Issue = issue;
       ReleaseDate = releaseDate;
       Topics = topics;
-
-      _copies = new ObservableDictionary<int, Copy>();
     }
 
     #region Properties
@@ -59,7 +70,7 @@ namespace Sela.LibraryExample.Core.Model
     public Genre Genre
     {
       get { return _genre; }
-      private set
+      set
       {
         if (value == _genre)
           return;
@@ -83,7 +94,7 @@ namespace Sela.LibraryExample.Core.Model
     public DateTime ReleaseDate
     {
       get { return _releaseDate; }
-      private set
+      set
       {
         if (value.Equals(_releaseDate))
           return;
@@ -95,7 +106,7 @@ namespace Sela.LibraryExample.Core.Model
     public int Issue
     {
       get { return _issue; }
-      private set
+      set
       {
         if (value == _issue)
           return;
