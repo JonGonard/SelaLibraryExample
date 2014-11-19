@@ -12,12 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Sela.LibraryExample.UI
+namespace Sela.LibraryExample.UI.Views
 {
   /// <summary>
   /// Interaction logic for NewItemView.xaml
   /// </summary>
-  public partial class NewItemView : Window
+  public partial class NewItemView
   {
     public NewItemView()
     {
