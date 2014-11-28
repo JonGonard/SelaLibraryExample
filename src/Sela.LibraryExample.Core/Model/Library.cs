@@ -12,12 +12,10 @@ namespace Sela.LibraryExample.Core.Model
 
     private Library()
     {
-      Catalog = new ObservableDictionary<int, CatalogItem>();
-
-      Catalog.CollectionChanged += (sender, args) => OnCollectionChanged(args);
+      Catalog = new Dictionary<int, CatalogItem>();
     }
 
-    private ObservableDictionary<int, CatalogItem> Catalog { get; set; }
+    private Dictionary<int, CatalogItem> Catalog { get; set; }
 
     public static Library Instance
     {
@@ -45,6 +43,8 @@ namespace Sela.LibraryExample.Core.Model
       {
         Catalog.Add(item.ISBN, item);
 
+        OnCollectionChanged(NotifyCollectionChangedAction.Add, item);
+
         return Result.Success();
       }
 
@@ -57,7 +57,11 @@ namespace Sela.LibraryExample.Core.Model
       {
         if (!Catalog[isbn].Any())
         {
+          var item = Catalog[isbn];
+
           Catalog.Remove(isbn);
+
+          OnCollectionChanged(NotifyCollectionChangedAction.Remove, item);
 
           return Result.Success();
         }
@@ -75,8 +79,10 @@ namespace Sela.LibraryExample.Core.Model
 
     public event NotifyCollectionChangedEventHandler CollectionChanged;
 
-    private void OnCollectionChanged(NotifyCollectionChangedEventArgs args)
+    private void OnCollectionChanged(NotifyCollectionChangedAction action, CatalogItem changedItem)
     {
+      var args = new NotifyCollectionChangedEventArgs(action, changedItem);
+
       var temp = CollectionChanged;
 
       if (temp != null)

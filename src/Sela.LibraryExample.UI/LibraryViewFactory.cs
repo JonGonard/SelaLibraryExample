@@ -1,5 +1,6 @@
 ﻿using Sela.LibraryExample.Core.Infrastructure;
 using Sela.LibraryExample.Core.ViewModel;
+using Sela.LibraryExample.UI.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace Sela.LibraryExample.UI
   {
     public Window CreateNewItemView(AddNewItemViewModel addNewItemViewModel)
     {
-      throw new NotImplementedException();
+      var newItemView = new NewItemView() { DataContext = addNewItemViewModel };
+
+      return newItemView;
     }
   }
 }

@@ -10,23 +10,30 @@ namespace Sela.LibraryExample.UI.Helpers
 {
   public class ListEnumExtension : MarkupExtension
   {
-    public ListEnumExtension(Type enumType)
+    public ListEnumExtension()
+    {
+      DisplayEmptyValue = false;
+    }
+
+    public ListEnumExtension(Type enumType): this()
     {
       EnumType = enumType;
-      DisplayNullValue = false;
     }
 
     public Type EnumType { get; set; }
 
-    public object NullValue { get; set; }
+    public object EmptyValue { get; set; }
 
-    public bool DisplayNullValue { get; set; }
+    public bool DisplayEmptyValue { get; set; }
 
     public override object ProvideValue(IServiceProvider serviceProvider)
     {
-      return DisplayNullValue 
-        ? Enum.GetValues(EnumType)).Where(x => x != NullValue)
-        : Enum.GetValues(EnumType);
+      var array = Enum.GetValues(EnumType);
+
+      if (DisplayEmptyValue)
+        return array.Cast<object>().Where(x => x != EmptyValue);
+      else
+        return array;
     }
   }
 }

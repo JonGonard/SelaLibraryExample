@@ -1,6 +1,6 @@
 ﻿namespace Sela.LibraryExample.Core.ViewModel
 {
-  public enum ItemTypes
+  public enum ItemType
   {
     Book,
     Jurnal,

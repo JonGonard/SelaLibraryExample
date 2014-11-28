@@ -10,7 +10,7 @@ namespace Sela.LibraryExample.Core.Model
 {
   public abstract class CatalogItem : NotifyObject, IEnumerable<Copy>, INotifyCollectionChanged
   {
-    private readonly ObservableDictionary<int, Copy> _copies;
+    private readonly Dictionary<int, Copy> _copies;
     private int _isbn;
     private string _title;
     private Genre _genre;
@@ -20,13 +20,12 @@ namespace Sela.LibraryExample.Core.Model
 
     private CatalogItem()
     {
-      _copies = new ObservableDictionary<int, Copy>();          
+      _copies = new Dictionary<int, Copy>();
       Topics = new ObservableCollection<string>();
-
-      _copies.CollectionChanged += (sender, args) => OnCollectionChanged(args);
     }
 
-    protected CatalogItem(int isbn, string title) : this()
+    protected CatalogItem(int isbn, string title)
+      : this()
     {
       _isbn = isbn;
       _title = title;
@@ -34,7 +33,8 @@ namespace Sela.LibraryExample.Core.Model
     }
 
     protected CatalogItem(string title, int isbn, Genre genre, int issue, DateTime releaseDate,
-      ObservableCollection<string> topics) : this()
+      ObservableCollection<string> topics)
+      : this()
     {
       Title = title;
       ISBN = isbn;
@@ -125,7 +125,10 @@ namespace Sela.LibraryExample.Core.Model
       if (!_copies.ContainsKey(copyNumber))
       {
         var copy = new Copy(ISBN, copyNumber);
+
         _copies.Add(copyNumber, copy);
+
+        OnCollectionChanged(NotifyCollectionChangedAction.Add, copy);
 
         return Result<Copy>.Success(copy);
       }
@@ -143,7 +146,13 @@ namespace Sela.LibraryExample.Core.Model
       Result result = IsCopyAvailable(copyNumber);
 
       if (result.DidSucceed)
+      {
+        var copy = _copies[copyNumber];
+
         _copies.Remove(copyNumber);
+
+        OnCollectionChanged(NotifyCollectionChangedAction.Remove, copy);
+      }
 
       return result;
     }
@@ -166,7 +175,14 @@ namespace Sela.LibraryExample.Core.Model
     public Copy this[int copyNumber]
     {
       get { return _copies[copyNumber]; }
-      set { _copies[copyNumber] = value; }
+      set
+      {
+        var oldCopy = _copies[copyNumber];
+
+        _copies[copyNumber] = value;
+
+        OnCollectionChanged(NotifyCollectionChangedAction.Replace, value, oldCopy);
+      }
     }
 
     private Result IsCopyAvailable(int copyNumber)
@@ -179,8 +195,12 @@ namespace Sela.LibraryExample.Core.Model
 
     public event NotifyCollectionChangedEventHandler CollectionChanged;
 
-    private void OnCollectionChanged(NotifyCollectionChangedEventArgs args)
+    private void OnCollectionChanged(NotifyCollectionChangedAction action, Copy changedItem, Copy oldItem = null)
     {
+      var args = oldItem == null
+        ? new NotifyCollectionChangedEventArgs(action, changedItem)
+        : new NotifyCollectionChangedEventArgs(action, changedItem, oldItem);
+
       var temp = CollectionChanged;
 
       if (temp != null)

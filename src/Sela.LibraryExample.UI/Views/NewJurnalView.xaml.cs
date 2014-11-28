@@ -10,32 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Sela.LibraryExample.UI.Views
 {
   /// <summary>
-  /// Interaction logic for NewItemView.xaml
+  /// Interaction logic for NewJurnalView.xaml
   /// </summary>
-  public partial class NewItemView
+  public partial class NewJurnalView : UserControl
   {
-    public NewItemView()
+    public NewJurnalView()
     {
       InitializeComponent();
-    }
-
-    private void AddButton_Click(object sender, RoutedEventArgs e)
-    {
-      DialogResult = true;
-
-      Close();
-    }
-
-    private void CancelButton_Click(object sender, RoutedEventArgs e)
-    {
-      DialogResult = false;
-
-      Close();
     }
   }
 }

@@ -5,10 +5,10 @@ namespace Sela.LibraryExample.Core.ViewModel
 {
   public class AddNewItemViewModel : NotifyObject
   {
-    private ItemTypes _newItemType;
+    private ItemType _newItemType;
     private ItemSpecificViewModel _itemSpecificViewModel;
 
-    public ItemTypes NewItemType
+    public ItemType NewItemType
     {
       get { return _newItemType; }
       set
@@ -20,10 +20,10 @@ namespace Sela.LibraryExample.Core.ViewModel
 
         switch (value)
         {
-          case ItemTypes.Book:
+          case ItemType.Book:
             ItemSpecificViewModel = new BookViewModel();
             break;
-          case ItemTypes.Jurnal:
+          case ItemType.Jurnal:
             ItemSpecificViewModel = new JurnalViewModel();
             break;
           default:
