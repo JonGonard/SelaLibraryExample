@@ -11,5 +11,6 @@ namespace Sela.LibraryExample.Core.Infrastructure
   public interface IViewFactory
   {
     Window CreateNewItemView(AddNewItemViewModel addNewItemViewModel);
+    Window CreateItemView(CatalogItemViewModel viewModel);
   }
 }

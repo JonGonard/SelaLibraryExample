@@ -1,9 +1,8 @@
-﻿using System.Windows.Input;
-using Sela.LibraryExample.Core.Model;
+﻿using Sela.LibraryExample.Core.Model;
 
 namespace Sela.LibraryExample.Core.ViewModel
 {
-  public class JurnalViewModel : ItemSpecificViewModel
+  public class NewJurnalViewModel : NewItemSpecificViewModel
   {
     private string _editor;
 

@@ -1,4 +1,5 @@
-﻿using Sela.LibraryExample.Core.Infrastructure;
+﻿using System.ComponentModel;
+using Sela.LibraryExample.Core.Infrastructure;
 using Sela.LibraryExample.Core.Model;
 using Sela.LibraryExample.Core.ViewModel;
 using System;
@@ -25,8 +26,6 @@ namespace Sela.LibraryExample.UI.Views
   {
     private IViewFactory _viewFactory;
 
-    public CatalogViewModel CatalogViewModel { get; set; }
-
     public MainWindow()
     {
       _viewFactory = new LibraryViewFactory();
@@ -38,7 +37,13 @@ namespace Sela.LibraryExample.UI.Views
       InitializeComponent();
 
       DataContext = CatalogViewModel;
+
+      CatalogCollectionView = CollectionViewSource.GetDefaultView(CatalogViewModel.Library);
     }
+
+    public CatalogViewModel CatalogViewModel { get; set; }
+
+    public ICollectionView CatalogCollectionView { get; set; }
 
     private void CreateSampleInfo()
     {
@@ -51,6 +56,11 @@ namespace Sela.LibraryExample.UI.Views
       CatalogViewModel.Library.AddItem(book2);
       CatalogViewModel.Library.AddItem(book3);
       CatalogViewModel.Library.AddItem(book4);
+    }
+
+    private void CatalogList_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+      CatalogViewModel.ShowItem(CatalogCollectionView.CurrentItem as CatalogItem);
     }
   }
 }

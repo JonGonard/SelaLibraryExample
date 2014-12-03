@@ -1,12 +1,7 @@
-﻿using Sela.LibraryExample.Core.Infrastructure;
+﻿using System.Windows;
+using Sela.LibraryExample.Core.Infrastructure;
 using Sela.LibraryExample.Core.ViewModel;
 using Sela.LibraryExample.UI.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace Sela.LibraryExample.UI
 {
@@ -14,9 +9,16 @@ namespace Sela.LibraryExample.UI
   {
     public Window CreateNewItemView(AddNewItemViewModel addNewItemViewModel)
     {
-      var newItemView = new NewItemView() { DataContext = addNewItemViewModel };
+      var newItemView = new NewItemView {DataContext = addNewItemViewModel};
 
       return newItemView;
+    }
+
+    public Window CreateItemView(CatalogItemViewModel viewModel)
+    {
+      var itemView = new CatalogItemView {DataContext = viewModel};
+
+      return itemView;
     }
   }
 }

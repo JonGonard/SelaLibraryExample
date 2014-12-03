@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using Sela.LibraryExample.Core.Infrastructure;
 using Sela.LibraryExample.Core.Model;
 using MessageBox = Sela.LibraryExample.Core.Infrastructure.MessageBox;
@@ -12,12 +7,12 @@ namespace Sela.LibraryExample.Core.ViewModel
 {
   public class CatalogViewModel : NotifyObject
   {
-    private IViewFactory _viewFactory;
+    private readonly IViewFactory _viewFactory;
 
     public CatalogViewModel(IViewFactory viewFactory)
     {
       _viewFactory = viewFactory;
-      RemoveItemCommand = new RelayCommand(x => RemoveItem((CatalogItem)x));
+      RemoveItemCommand = new RelayCommand(x => RemoveItem((CatalogItem) x));
       AddNewItemCommand = new RelayCommand(x => AddNewItem());
     }
 
@@ -34,7 +29,7 @@ namespace Sela.LibraryExample.Core.ViewModel
     {
       if (MessageBox.ShowQuestion("Are you sure you want to delete " + item.Title) == MessageBoxResult.Yes)
       {
-        var result = Library.RemoveItem(item);
+        Result result = Library.RemoveItem(item);
 
         if (!result)
         {
@@ -49,17 +44,26 @@ namespace Sela.LibraryExample.Core.ViewModel
 
       Window newItemView = _viewFactory.CreateNewItemView(newItemViewModel);
 
-      var result = newItemView.ShowDialog();
+      bool? result = newItemView.ShowDialog();
 
       if (result.HasValue && result.Value)
       {
-        var addResult = Library.AddItem(newItemViewModel.ItemSpecificViewModel.CreateNewItem());
+        Result addResult = Library.AddItem(newItemViewModel.NewItemSpecificViewModel.CreateNewItem());
 
         if (!addResult)
         {
           MessageBox.ShowError(addResult.Error);
         }
       }
+    }
+
+    public void ShowItem(CatalogItem catalogItem)
+    {
+      var viewModel = new CatalogItemViewModel(catalogItem);
+
+      Window itemView = _viewFactory.CreateItemView(viewModel);
+
+      itemView.Show();
     }
   }
 }

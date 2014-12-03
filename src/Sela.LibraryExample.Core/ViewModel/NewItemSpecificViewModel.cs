@@ -7,7 +7,7 @@ using Sela.LibraryExample.Core.Model;
 
 namespace Sela.LibraryExample.Core.ViewModel
 {
-  public abstract class ItemSpecificViewModel : NotifyObject
+  public abstract class NewItemSpecificViewModel : NotifyObject
   {
     private int _isbn;
     private string _title;

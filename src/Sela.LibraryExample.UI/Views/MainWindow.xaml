@@ -1,20 +1,34 @@
-﻿<Window x:Class="Sela.LibraryExample.UI.Views.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+﻿<Window
+  x:Class="Sela.LibraryExample.UI.Views.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  Width="525"
+  Height="350"
+  Title="MainWindow">
   <StackPanel x:Name="MainPanel">
-    <ListView x:Name="CatalogList" ItemsSource="{Binding Library}" IsSynchronizedWithCurrentItem="True">
+    <ListView
+      x:Name="CatalogList"
+      IsSynchronizedWithCurrentItem="True"
+      ItemsSource="{Binding Library}"
+      MouseDoubleClick="CatalogList_OnMouseDoubleClick">
       <ListView.View>
         <GridView>
-          <GridViewColumn Header="ISBN" DisplayMemberBinding="{Binding ISBN}" />
-          <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" />
-          <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" />
+          <GridViewColumn DisplayMemberBinding="{Binding ISBN}" Header="ISBN"/>
+          <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="Title"/>
+          <GridViewColumn DisplayMemberBinding="{Binding Genre}" Header="Genre"/>
         </GridView>
       </ListView.View>
     </ListView>
     <StackPanel x:Name="OptionsPanel" Orientation="Horizontal">
-      <Button x:Name="AddNewItemButton" Content="Add" Command="{Binding AddNewItemCommand}"/>
-      <Button x:Name="RemoveItemButton" Content="Delete" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding Library/}"/>
+      <Button
+        x:Name="AddNewItemButton"
+        Command="{Binding AddNewItemCommand}"
+        Content="Add"/>
+      <Button
+        x:Name="RemoveItemButton"
+        Command="{Binding RemoveItemCommand}"
+        CommandParameter="{Binding Library/}"
+        Content="Delete"/>
     </StackPanel>
   </StackPanel>
 </Window>

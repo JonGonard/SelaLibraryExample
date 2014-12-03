@@ -128,7 +128,9 @@ namespace Sela.LibraryExample.Core.Model
 
         _copies.Add(copyNumber, copy);
 
-        OnCollectionChanged(NotifyCollectionChangedAction.Add, copy);
+        var args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, copy);
+
+        OnCollectionChanged(args);
 
         return Result<Copy>.Success(copy);
       }
@@ -138,7 +140,7 @@ namespace Sela.LibraryExample.Core.Model
 
     public Result<Copy> AddCopy()
     {
-      return AddCopy(_copies.Keys.Max() + 1);
+      return AddCopy(_copies.Count > 0 ? _copies.Keys.Max() + 1 : 1);
     }
 
     public Result RemoveCopy(int copyNumber)
@@ -147,11 +149,11 @@ namespace Sela.LibraryExample.Core.Model
 
       if (result.DidSucceed)
       {
-        var copy = _copies[copyNumber];
-
         _copies.Remove(copyNumber);
 
-        OnCollectionChanged(NotifyCollectionChangedAction.Remove, copy);
+        var args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
+
+        OnCollectionChanged(args);
       }
 
       return result;
@@ -181,7 +183,9 @@ namespace Sela.LibraryExample.Core.Model
 
         _copies[copyNumber] = value;
 
-        OnCollectionChanged(NotifyCollectionChangedAction.Replace, value, oldCopy);
+        var args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
+
+        OnCollectionChanged(args);
       }
     }
 
@@ -195,12 +199,8 @@ namespace Sela.LibraryExample.Core.Model
 
     public event NotifyCollectionChangedEventHandler CollectionChanged;
 
-    private void OnCollectionChanged(NotifyCollectionChangedAction action, Copy changedItem, Copy oldItem = null)
+    private void OnCollectionChanged(NotifyCollectionChangedEventArgs args)
     {
-      var args = oldItem == null
-        ? new NotifyCollectionChangedEventArgs(action, changedItem)
-        : new NotifyCollectionChangedEventArgs(action, changedItem, oldItem);
-
       var temp = CollectionChanged;
 
       if (temp != null)

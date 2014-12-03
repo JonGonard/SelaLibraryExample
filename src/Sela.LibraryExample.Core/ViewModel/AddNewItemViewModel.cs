@@ -6,7 +6,12 @@ namespace Sela.LibraryExample.Core.ViewModel
   public class AddNewItemViewModel : NotifyObject
   {
     private ItemType _newItemType;
-    private ItemSpecificViewModel _itemSpecificViewModel;
+    private NewItemSpecificViewModel _newItemSpecificViewModel;
+
+    public AddNewItemViewModel()
+    {
+      _newItemSpecificViewModel = new NewBookViewModel();
+    }
 
     public ItemType NewItemType
     {
@@ -21,10 +26,10 @@ namespace Sela.LibraryExample.Core.ViewModel
         switch (value)
         {
           case ItemType.Book:
-            ItemSpecificViewModel = new BookViewModel();
+            NewItemSpecificViewModel = new NewBookViewModel();
             break;
           case ItemType.Jurnal:
-            ItemSpecificViewModel = new JurnalViewModel();
+            NewItemSpecificViewModel = new NewJurnalViewModel();
             break;
           default:
             throw new ArgumentOutOfRangeException("value");
@@ -32,14 +37,14 @@ namespace Sela.LibraryExample.Core.ViewModel
       }
     }
 
-    public ItemSpecificViewModel ItemSpecificViewModel
+    public NewItemSpecificViewModel NewItemSpecificViewModel
     {
-      get { return _itemSpecificViewModel; }
+      get { return _newItemSpecificViewModel; }
       private set
       {
-        if (Equals(value, _itemSpecificViewModel))
+        if (Equals(value, _newItemSpecificViewModel))
           return;
-        _itemSpecificViewModel = value;
+        _newItemSpecificViewModel = value;
         OnPropertyChanged();
       }
     }

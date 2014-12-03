@@ -43,7 +43,9 @@ namespace Sela.LibraryExample.Core.Model
       {
         Catalog.Add(item.ISBN, item);
 
-        OnCollectionChanged(NotifyCollectionChangedAction.Add, item);
+        var e = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item);
+
+        OnCollectionChanged(e);
 
         return Result.Success();
       }
@@ -57,11 +59,11 @@ namespace Sela.LibraryExample.Core.Model
       {
         if (!Catalog[isbn].Any())
         {
-          var item = Catalog[isbn];
-
           Catalog.Remove(isbn);
 
-          OnCollectionChanged(NotifyCollectionChangedAction.Remove, item);
+          var e = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
+
+          OnCollectionChanged(e);
 
           return Result.Success();
         }
@@ -79,14 +81,12 @@ namespace Sela.LibraryExample.Core.Model
 
     public event NotifyCollectionChangedEventHandler CollectionChanged;
 
-    private void OnCollectionChanged(NotifyCollectionChangedAction action, CatalogItem changedItem)
+    private void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
     {
-      var args = new NotifyCollectionChangedEventArgs(action, changedItem);
-
       var temp = CollectionChanged;
 
       if (temp != null)
-        temp(this, args);
+        temp(this, e);
     }
   }
 }

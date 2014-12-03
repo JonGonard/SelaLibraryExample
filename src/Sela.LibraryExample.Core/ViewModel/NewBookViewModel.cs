@@ -2,7 +2,7 @@
 
 namespace Sela.LibraryExample.Core.ViewModel
 {
-  public class BookViewModel : ItemSpecificViewModel
+  public class NewBookViewModel : NewItemSpecificViewModel
   {
     private string _author;
     private string _publisher;

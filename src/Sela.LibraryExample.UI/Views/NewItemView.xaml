@@ -4,19 +4,13 @@
         xmlns:viewModels="http://Sela.LibraryExample.Core/ViewModel"
         xmlns:helpers="clr-namespace:Sela.LibraryExample.UI.Helpers"
         xmlns:views="clr-namespace:Sela.LibraryExample.UI.Views"
-        Title="NewItemView" Height="300" Width="300">
+        Title="NewItemView"
+        SizeToContent="WidthAndHeight">
   <Window.Resources>
-    <DataTemplate x:Key="EnumRadioTemplate" DataType="{x:Type viewModels:ItemType}">
-      <RadioButton 
-        Content="{Binding}" 
-        Tag="{Binding}" 
-        GroupName="Types" 
-        IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}"/>
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type viewModels:BookViewModel}">
+    <DataTemplate DataType="{x:Type viewModels:NewBookViewModel}">
       <views:NewBookView />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type viewModels:JurnalViewModel}">
+    <DataTemplate DataType="{x:Type viewModels:NewJurnalViewModel}">
       <views:NewJurnalView />
     </DataTemplate>
   </Window.Resources>
@@ -24,8 +18,7 @@
     <GroupBox Header="Item Type">
       <ListBox 
         ItemsSource="{helpers:ListEnum {x:Type viewModels:ItemType}}"
-        SelectedItem="{Binding NewItemType}"
-        ItemTemplate="{StaticResource EnumRadioTemplate}">
+        SelectedItem="{Binding NewItemType}">
         <ListBox.ItemsPanel>
           <ItemsPanelTemplate>
             <UniformGrid Columns="2"/>
@@ -34,9 +27,9 @@
       </ListBox>
     </GroupBox>
     <GroupBox Header="Details">
-      <ContentControl Content="{Binding ItemSpecificViewModel}"/>
+      <ContentControl Content="{Binding NewItemSpecificViewModel}"/>
     </GroupBox>
-    <DockPanel LastChildFill="False">
+    <DockPanel LastChildFill="False" Margin="3">
       <Button x:Name="AddButton" DockPanel.Dock="Left" Content="Add" IsDefault="True" Click="AddButton_Click"/>
       <Button x:Name="CancelButton" DockPanel.Dock="Right" Content="Cancel" IsCancel="True" Click="CancelButton_Click"/>
     </DockPanel>
