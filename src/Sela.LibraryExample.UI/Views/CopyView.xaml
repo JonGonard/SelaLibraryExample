@@ -7,13 +7,24 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   SizeToContent="WidthAndHeight"
-  Title="CopyView"
-  mc:Ignorable="d">
+  mc:Ignorable="d"
+  Background="{StaticResource BackgroundBrush}"
+  WindowStartupLocation="CenterScreen"
+  WindowStyle="ToolWindow">
   <Window.Resources>
     <helpers:IsbnToTitleConverter x:Key="IsbnToTitleConverter"/>
   </Window.Resources>
+  <Window.Title>
+    <MultiBinding StringFormat="{}{0} copy #{1}">
+      <Binding Converter="{StaticResource IsbnToTitleConverter}" Path="Copy.ISBN"/>
+      <Binding Path="Copy.CopyNumber"/>
+    </MultiBinding>
+  </Window.Title>
   <StackPanel>
-    <Label x:Name="Title" Content="{Binding Copy.ISBN, Converter={StaticResource IsbnToTitleConverter}, Mode=OneWay}"/>
+    <Label 
+      x:Name="Title" 
+      Content="{Binding Copy.ISBN, Converter={StaticResource IsbnToTitleConverter}, Mode=OneWay}"
+      Style="{StaticResource HeaderStyle}"/>
     <Label x:Name="Copy">
       <TextBlock>
         <Run Text="Copy #"/>

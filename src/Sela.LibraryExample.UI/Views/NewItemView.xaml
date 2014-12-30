@@ -1,11 +1,15 @@
-﻿<Window x:Class="Sela.LibraryExample.UI.Views.NewItemView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:viewModels="http://Sela.LibraryExample.Core/ViewModel"
-        xmlns:helpers="clr-namespace:Sela.LibraryExample.UI.Helpers"
-        xmlns:views="clr-namespace:Sela.LibraryExample.UI.Views"
-        Title="NewItemView"
-        SizeToContent="WidthAndHeight">
+﻿<Window 
+  x:Class="Sela.LibraryExample.UI.Views.NewItemView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:viewModels="http://Sela.LibraryExample.Core/ViewModel"
+  xmlns:helpers="clr-namespace:Sela.LibraryExample.UI.Helpers"
+  xmlns:views="clr-namespace:Sela.LibraryExample.UI.Views"
+  Title="{Binding NewItemSpecificViewModel.Title, StringFormat=New Item - {0}}"
+  SizeToContent="WidthAndHeight"
+  Background="{StaticResource BackgroundBrush}"
+  WindowStartupLocation="CenterScreen"
+  WindowStyle="ToolWindow">
   <Window.Resources>
     <DataTemplate DataType="{x:Type viewModels:NewBookViewModel}">
       <views:NewBookView />

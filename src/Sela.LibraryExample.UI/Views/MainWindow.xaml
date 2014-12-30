@@ -4,8 +4,24 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   Width="525"
   Height="350"
-  Title="MainWindow">
-  <StackPanel x:Name="MainPanel">
+  Title="Library"
+  Background="{StaticResource BackgroundBrush}"
+  WindowStartupLocation="CenterScreen">
+  <DockPanel LastChildFill="True" x:Name="MainPanel">
+    <StackPanel 
+      x:Name="OptionsPanel" 
+      Orientation="Horizontal"
+      DockPanel.Dock="Bottom">
+      <Button
+        x:Name="AddNewItemButton"
+        Command="{Binding AddNewItemCommand}"
+        Content="Add"/>
+      <Button
+        x:Name="RemoveItemButton"
+        Command="{Binding RemoveItemCommand}"
+        CommandParameter="{Binding Library/}"
+        Content="Delete"/>
+    </StackPanel>
     <ListView
       x:Name="CatalogList"
       IsSynchronizedWithCurrentItem="True"
@@ -19,16 +35,5 @@
         </GridView>
       </ListView.View>
     </ListView>
-    <StackPanel x:Name="OptionsPanel" Orientation="Horizontal">
-      <Button
-        x:Name="AddNewItemButton"
-        Command="{Binding AddNewItemCommand}"
-        Content="Add"/>
-      <Button
-        x:Name="RemoveItemButton"
-        Command="{Binding RemoveItemCommand}"
-        CommandParameter="{Binding Library/}"
-        Content="Delete"/>
-    </StackPanel>
-  </StackPanel>
+  </DockPanel>
 </Window>

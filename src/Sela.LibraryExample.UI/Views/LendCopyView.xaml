@@ -5,23 +5,37 @@
   xmlns:local="clr-namespace:Sela.LibraryExample.UI.Views"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:helpers="clr-namespace:Sela.LibraryExample.UI.Helpers"
   SizeToContent="WidthAndHeight"
-  Title="LendCopyView"
-  mc:Ignorable="d">
-  <StackPanel>
+  mc:Ignorable="d"
+  Background="{StaticResource BackgroundBrush}"
+  WindowStartupLocation="CenterScreen"
+  WindowStyle="ToolWindow">
+  <Window.Resources>
+    <helpers:IsbnToTitleConverter x:Key="IsbnToTitleConverter"/>
+  </Window.Resources>
+  <Window.Title>
+    <MultiBinding StringFormat="Lend {0} copy #{1}">
+      <Binding Converter="{StaticResource IsbnToTitleConverter}" Path="Copy.ISBN"/>
+      <Binding Path="Copy.CopyNumber"/>
+    </MultiBinding>
+  </Window.Title>
+  <StackPanel HorizontalAlignment="Stretch">
     <StackPanel Orientation="Horizontal">
       <Label Content="Lend To:"/>
-      <TextBox Text="{Binding LendTo}"/>
+      <TextBox Text="{Binding LendTo}" Width="150"/>
     </StackPanel>
-    <StackPanel Orientation="Horizontal">
+    <DockPanel LastChildFill="False" HorizontalAlignment="Stretch">
       <Button
+        DockPanel.Dock="Left"
         Click="LendOnClick"
         Content="Lend"
         IsDefault="True"/>
       <Button
+        DockPanel.Dock="Right"
         Click="CancelOnClick"
         Content="Cancel"
         IsCancel="True"/>
-    </StackPanel>
+    </DockPanel>
   </StackPanel>
 </Window>
