@@ -5,7 +5,9 @@
   xmlns:model="http://Sela.LibraryExample.Core/Model"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   SizeToContent="WidthAndHeight"
-  Title="CatalogItemView">
+  Title="CatalogItemView"
+  x:Name="CatalogItemWindow"
+  Loaded="CatalogItemView_OnLoaded">
   <Window.Resources>
     <helpers:IsbnToTitleConverter x:Key="IsbnToTitleConverter"/>
     <helpers:IsLentToForegroundConverter x:Key="IsLentToForegroundConverter"/>
@@ -140,7 +142,11 @@
       <ContentControl x:Name="AdditionalDetailsControl" Content="{Binding}"/>
     </StackPanel>
     <StackPanel x:Name="CopiesPanel">
-      <ListBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding CatalogItem}"/>
+      <ListBox 
+        x:Name="CopiesList"
+        ItemsSource="{Binding CatalogItem}"
+        IsSynchronizedWithCurrentItem="True" 
+        MouseDoubleClick="Control_OnMouseDoubleClick"/>
       <StackPanel Orientation="Horizontal">
         <Button
           x:Name="AddCopyButton"

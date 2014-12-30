@@ -64,6 +64,7 @@
     <Compile Include="ViewModel\AddNewItemViewModel.cs" />
     <Compile Include="ViewModel\CatalogItemViewModel.cs" />
     <Compile Include="ViewModel\CopyViewModel.cs" />
+    <Compile Include="ViewModel\LendCopyViewModel.cs" />
     <Compile Include="ViewModel\NewBookViewModel.cs" />
     <Compile Include="ViewModel\CatalogViewModel.cs" />
     <Compile Include="ViewModel\NewItemSpecificViewModel.cs" />

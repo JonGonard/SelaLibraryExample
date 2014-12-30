@@ -81,10 +81,24 @@
     <Compile Include="Views\CatalogItemView.xaml.cs">
       <DependentUpon>CatalogItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CopyView.xaml.cs">
+      <DependentUpon>CopyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LendCopyView.xaml.cs">
+      <DependentUpon>LendCopyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NewJurnalView.xaml.cs">
       <DependentUpon>NewJurnalView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\CatalogItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CopyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LendCopyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

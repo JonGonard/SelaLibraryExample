@@ -59,7 +59,7 @@ namespace Sela.LibraryExample.Core.ViewModel
 
     public void ShowItem(CatalogItem catalogItem)
     {
-      var viewModel = new CatalogItemViewModel(catalogItem);
+      var viewModel = new CatalogItemViewModel(_viewFactory, catalogItem);
 
       Window itemView = _viewFactory.CreateItemView(viewModel);
 

@@ -7,9 +7,9 @@ namespace Sela.LibraryExample.UI
 {
   public class LibraryViewFactory : IViewFactory
   {
-    public Window CreateNewItemView(AddNewItemViewModel addNewItemViewModel)
+    public Window CreateNewItemView(AddNewItemViewModel viewModel)
     {
-      var newItemView = new NewItemView {DataContext = addNewItemViewModel};
+      var newItemView = new NewItemView {DataContext = viewModel};
 
       return newItemView;
     }
@@ -19,6 +19,20 @@ namespace Sela.LibraryExample.UI
       var itemView = new CatalogItemView {DataContext = viewModel};
 
       return itemView;
+    }
+
+    public Window CreateCopyView(CopyViewModel viewModel)
+    {
+      var copyView = new CopyView {DataContext = viewModel};
+
+      return copyView;
+    }
+
+    public Window CreateLendCopyView(LendCopyViewModel viewModel)
+    {
+      var lendCopyView = new LendCopyView {DataContext = viewModel};
+
+      return lendCopyView;
     }
   }
 }

@@ -1,0 +1,27 @@
+﻿<Window
+  x:Class="Sela.LibraryExample.UI.Views.LendCopyView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:local="clr-namespace:Sela.LibraryExample.UI.Views"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  SizeToContent="WidthAndHeight"
+  Title="LendCopyView"
+  mc:Ignorable="d">
+  <StackPanel>
+    <StackPanel Orientation="Horizontal">
+      <Label Content="Lend To:"/>
+      <TextBox Text="{Binding LendTo}"/>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal">
+      <Button
+        Click="LendOnClick"
+        Content="Lend"
+        IsDefault="True"/>
+      <Button
+        Click="CancelOnClick"
+        Content="Cancel"
+        IsCancel="True"/>
+    </StackPanel>
+  </StackPanel>
+</Window>

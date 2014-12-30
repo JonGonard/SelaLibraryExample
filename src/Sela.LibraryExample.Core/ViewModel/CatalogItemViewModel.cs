@@ -1,17 +1,21 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using Sela.LibraryExample.Core.Infrastructure;
 using Sela.LibraryExample.Core.Model;
+using MessageBox = Sela.LibraryExample.Core.Infrastructure.MessageBox;
 
 namespace Sela.LibraryExample.Core.ViewModel
 {
   public class CatalogItemViewModel : NotifyObject
   {
+    private readonly IViewFactory _viewFactory;
     private CatalogItem _catalogItem;
     private RelayCommand _addCopyCommand;
     private RelayCommand _removeCopyCommand;
 
-    public CatalogItemViewModel(CatalogItem catalogItem)
+    public CatalogItemViewModel(IViewFactory viewFactory, CatalogItem catalogItem)
     {
+      _viewFactory = viewFactory;
       CatalogItem = catalogItem;
 
       AddCopyCommand = new RelayCommand(x => AddCopy());
@@ -53,6 +57,15 @@ namespace Sela.LibraryExample.Core.ViewModel
         _catalogItem = value;
         OnPropertyChanged();
       }
+    }
+
+    public void ShowCopy(Copy copy)
+    {
+      var viewModel = new CopyViewModel(_viewFactory, copy);
+
+      Window itemView = _viewFactory.CreateCopyView(viewModel);
+
+      itemView.Show();
     }
 
     public void AddCopy()
