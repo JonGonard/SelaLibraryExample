@@ -2,11 +2,95 @@
   x:Class="Sela.LibraryExample.UI.Views.MainWindow"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:model="http://Sela.LibraryExample.Core/Model"
   Width="525"
   Height="350"
   Title="Library"
   Background="{StaticResource BackgroundBrush}"
   WindowStartupLocation="CenterScreen">
+  <Window.Resources>
+    <DataTemplate DataType="{x:Type model:Book}">
+      <StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <Label Style="{StaticResource BoldHeaderStyle}" Content="{Binding Title, Mode=OneWay}"/>
+          <Label Style="{StaticResource HeaderStyle}" Content="{Binding Author, Mode=OneWay}"/>
+        </StackPanel>
+        <Expander>
+          <UniformGrid Columns="2">
+            <Label>
+              <TextBlock>
+                <Run Text="ISBN:"/>
+                <Run Text="{Binding ISBN, Mode=OneWay}"/>
+              </TextBlock>
+            </Label>
+            <Label>
+              <TextBlock>
+                <Run Text="Issue #"/><Run Text="{Binding Issue, Mode=OneWay}"/>
+              </TextBlock>
+            </Label>
+            <Label>
+              <TextBlock>
+                <Run Text="Genre:"/>
+                <Run Text="{Binding Genre, Mode=OneWay}"/>
+              </TextBlock>
+            </Label>
+            <Label>
+              <TextBlock>
+                <Run Text="Release Date:"/>
+                <Run Text="{Binding ReleaseDate, Mode=OneWay, StringFormat=d}"/>
+              </TextBlock>
+            </Label>
+            <Label>
+              <TextBlock>
+                <Run Text="Publisher:"/>
+                <Run Text="{Binding Publisher, Mode=OneWay}"/>
+              </TextBlock>
+            </Label>
+          </UniformGrid>
+        </Expander>
+      </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type model:Jurnal}">
+      <StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <Label Style="{StaticResource BoldHeaderStyle}" Content="{Binding Title, Mode=OneWay}"/>
+        </StackPanel>
+        <Expander>
+          <UniformGrid>
+            <Label>
+              <TextBlock>
+                <Run Text="ISBN:"/>
+                <Run Text="{Binding ISBN, Mode=OneWay}"/>
+              </TextBlock>
+            </Label>
+            <Label>
+              <TextBlock>
+                <Run Text="Issue #"/><Run Text="{Binding Issue, Mode=OneWay}"/>
+              </TextBlock>
+            </Label>
+            <Label>
+              <TextBlock>
+                <Run Text="Editor:"/>
+                <Run Text="{Binding Editor, Mode=OneWay}"/>
+              </TextBlock>
+            </Label>
+            <Label>
+              <TextBlock>
+                <Run Text="Genre:"/>
+                <Run Text="{Binding Genre, Mode=OneWay}"/>
+              </TextBlock>
+            </Label>
+            <Label>
+              <TextBlock>
+                <Run Text="Release Date:"/>
+                <Run Text="{Binding ReleaseDate, Mode=OneWay, StringFormat=d}"/>
+              </TextBlock>
+            </Label>
+          </UniformGrid>
+        </Expander>
+      </StackPanel>
+    </DataTemplate>
+  </Window.Resources>
   <DockPanel LastChildFill="True" x:Name="MainPanel">
     <StackPanel 
       x:Name="OptionsPanel" 
@@ -26,14 +110,6 @@
       x:Name="CatalogList"
       IsSynchronizedWithCurrentItem="True"
       ItemsSource="{Binding Library}"
-      MouseDoubleClick="CatalogList_OnMouseDoubleClick">
-      <ListView.View>
-        <GridView>
-          <GridViewColumn DisplayMemberBinding="{Binding ISBN}" Header="ISBN"/>
-          <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="Title"/>
-          <GridViewColumn DisplayMemberBinding="{Binding Genre}" Header="Genre"/>
-        </GridView>
-      </ListView.View>
-    </ListView>
+      MouseDoubleClick="CatalogList_OnMouseDoubleClick"/>
   </DockPanel>
 </Window>

@@ -47,10 +47,10 @@ namespace Sela.LibraryExample.UI.Views
 
     private void CreateSampleInfo()
     {
-      var book1 = new Book(1, "Ender's Game") { Genre = Genre.Thriller };
-      var book2 = new Book(2, "Speaker for the dead") { Genre = Genre.Thriller };
-      var book3 = new Book(3, "Xenocide") { Genre = Genre.Thriller };
-      var book4 = new Book(4, "Children of the mind") { Genre = Genre.Thriller };
+      var book2 = new Book(2, "The Catcher in the Rye") { Genre = Genre.Thriller, Author = "J.D. Salinger" };
+      var book1 = new Book(1, "Ender's Game") { Genre = Genre.Thriller, Author = "Orson Scott Card"};
+      var book3 = new Book(3, "WPF Unleashed") { Genre = Genre.Professional, Author = "Adam Nathan" };
+      var book4 = new Jurnal(4, "Popular Mechanics") { Genre = Genre.Professional };
 
       CatalogViewModel.Library.AddItem(book1);
       CatalogViewModel.Library.AddItem(book2);
